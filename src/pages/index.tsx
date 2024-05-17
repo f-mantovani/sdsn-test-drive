@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import type { InferGetStaticPropsType, GetStaticProps } from 'next';
+//@ts-ignore
 import { getColor } from '@sdgindex/data/sdgs';
 import Link from 'next/link';
 
