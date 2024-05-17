@@ -45,6 +45,7 @@ export const getStaticProps = (async (context) => {
   );
 
   const solved = (await Promise.allSettled(countries)).map(
+	//@ts-ignore
     ({ value: { data } }) => {
       return data.features[0].attributes;
     },
