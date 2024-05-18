@@ -1,60 +1,60 @@
-import Image from 'next/image';
-import type { InferGetStaticPropsType, GetStaticProps } from 'next';
 //@ts-ignore
-import { getColor } from '@sdgindex/data/sdgs';
-import Link from 'next/link';
+import { getColor } from "@sdgindex/data/sdgs";
 
-export const sdgIndex = Array.from({length: 17}, (_, index) => index + 1);
+import Image from "next/image";
+import type { InferGetStaticPropsType, GetStaticProps } from "next";
+import Link from "next/link";
+import axios from "axios";
+
 const squareProportion = 120;
 
-type Goals = {
-    code: string;
-    title: string;
-    description: string;
-    uri: string;
+export type Goals = {
+  code: string;
+  title: string;
+  description: string;
+  uri: string;
 };
 
-function placeIcons(n: number, goals: Goals[]) {
-    const goalFound = goals.find((goal) => +goal.code === n);
-    const color = getColor(n);
+export function placeIcons(n: number) {
+  const color = getColor(n);
 
-    return (
-        <>
-            <Image
-				style={{backgroundColor: color}}
-                src={`/assets/sdg${n}-white.svg`}
-                width={squareProportion}
-                height={squareProportion}
-                alt={`Icon for SDG goal ${n}`}
-                priority
-            />
-            <p className='truncate'>{goalFound?.title}</p>
-        </>
-    );
+  return (
+    <>
+      <Image
+        style={{ backgroundColor: color }}
+        src={`/assets/sdg${n}-white.svg`}
+        width={squareProportion}
+        height={squareProportion}
+        alt={`Icon for SDG goal ${n}`}
+        priority
+      />
+    </>
+  );
 }
 
-export default function App({ goals }: InferGetStaticPropsType<typeof getStaticProps>) {
-    return (
-        <div className='flex gap-6 flex-wrap justify-center'>
-            {sdgIndex.map((p) => (
-                <Link href={`${p}`} key={p} className='max-w-[120px]'>
-                    {placeIcons(p, goals)}
-                </Link>
-            ))}
-        </div>
-    );
+export default function App({
+  goals,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
+  return (
+    <div className="flex flex-wrap justify-center gap-6">
+
+      {goals.map((goal) => (
+        <Link href={`${goal.code}`} key={goal.code} className="max-w-[120px]">
+          {placeIcons(+goal.code)}
+        </Link>
+      ))}
+    </div>
+  );
 }
 
 export const getStaticProps = (async () => {
-    const response = await fetch(
-        'https://unstats.un.org/SDGAPI/v1/sdg/Goal/List?includechildren=false'
-    );
+  const { data } = await axios.get<Goals[]>(
+    "https://unstats.un.org/SDGAPI/v1/sdg/Goal/List?includechildren=false",
+  );
 
-    const goals = await response.json();
-
-    return {
-        props: { goals },
-    };
+  return {
+    props: { goals: data },
+  };
 }) satisfies GetStaticProps<{
-    goals: Goals[];
+  goals: Goals[];
 }>;
