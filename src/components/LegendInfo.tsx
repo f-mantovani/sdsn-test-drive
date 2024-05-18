@@ -49,6 +49,7 @@ export const LegendInfo = () => {
               className="h-6 w-6 rounded-full"
               style={{ backgroundColor: rating.color }}
             ></div>
+            <p>({rating.color})</p>
             <p>{rating.description}</p>
           </div>
         ))}
