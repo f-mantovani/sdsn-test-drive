@@ -1,5 +1,4 @@
 export const Arrow = ({ symbol }: { symbol: string }) => {
-  console.log(symbol);
   const chooseArrow = () => {
     switch (symbol) {
       case "↑":

@@ -3,15 +3,15 @@ import { Arrow } from "./Icons/Arrow";
 
 export const SdgCard = ({ observation }: { observation: ObservationProps }) => {
   return (
-    <div className="grid grid-cols-2 gap-4 border-2 border-solid border-black px-8 py-4 text-xl dark:border-white">
-      <div>
+    <div className="grid grid-rows-2 rounded-lg border-2 border-solid border-black px-8 py-4 text-lg dark:border-white">
+      <div className="flex justify-between text-xl">
         <p>Country: {observation.name}</p>
         <p>Score: {observation.score}</p>
       </div>
 
-      <div>
+      <div className="flex flex-col gap-1">
         <div className="flex items-center gap-2">
-          <p>Rating:</p>
+          <p>Score rating:</p>
           <div
             style={{ backgroundColor: observation.rating }}
             className="h-6 w-6 rounded-full "
@@ -20,7 +20,7 @@ export const SdgCard = ({ observation }: { observation: ObservationProps }) => {
         </div>
 
         <div className="flex items-center gap-2">
-          <p>Trend:</p>
+          <p>Score trend:</p>
           <Arrow symbol={observation.trend} />
         </div>
       </div>

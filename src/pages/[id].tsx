@@ -13,9 +13,9 @@ export default function goalDetails(
 ) {
   const goalTitle = getLabel(+props.goal?.code);
   return (
-    <div className="mx-auto my-8 flex w-3/4 flex-col items-center justify-items-center gap-28">
+    <div className="mx-auto flex w-3/4 flex-col  justify-items-center gap-20">
       <section className="flex items-start gap-8">
-        {placeIcons(+props.goal.code)}
+        {placeIcons(+props.goal.code, props.goal)}
         <div className="flex flex-col gap-2">
           <h1 className="text-4xl">
             SDG {props.goal.code} - {goalTitle}
@@ -28,7 +28,7 @@ export default function goalDetails(
       <div className="flex flex-col gap-6">
         <section className="flex flex-col gap-8">
           <h2 className="text-2xl">Countries index for - {goalTitle}</h2>
-          <div className="flex flex-wrap gap-8">
+          <div className="grid grid-cols-3 gap-4">
             {props.data.map((goal) => {
               const observation = {
                 name: goal.Name,
@@ -41,7 +41,7 @@ export default function goalDetails(
           </div>
         </section>
 
-        <h2 className="text-2xl">Legend</h2>
+        <h2 className="text-lg">Legend</h2>
         <LegendInfo />
       </div>
     </div>
