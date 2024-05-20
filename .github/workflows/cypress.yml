@@ -18,6 +18,8 @@ jobs:
                   cache: 'pnpm'
             - name: Install dependencies
               run: pnpm install
+            - name: Cypress Install
+              run: pnpm dlx cypress install
             - name: Run tests
               run: pnpm test:build
 
