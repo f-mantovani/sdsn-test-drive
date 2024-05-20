@@ -101,3 +101,6 @@ yarn dev
 3. Expand the page to take the full screen on desktop `html, body, #__next`
 4. The data was a matter of analysis how the data came back and experiment a little bit
 5. The colors and arrows I needed to look upon the Development report and after I found also a ranking website that I could discover each one of the specific meanings
+
+
+
