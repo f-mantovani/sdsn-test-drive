@@ -1,7 +1,7 @@
 name: Cypress
 on: push
-paths-ignore:
-	- '**/README.md'
+paths-ignore: 
+  - '**/README.md'
 jobs:
     build:
         runs-on: ubuntu-latest
