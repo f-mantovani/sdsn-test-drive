@@ -16,7 +16,11 @@ export type Goals = {
   uri: string;
 };
 
-export function placeIcons(n: number, goals: Goals | Goals[]) {
+export function placeIcons(
+  n: number,
+  goals: Goals | Goals[],
+  home: boolean = false,
+) {
   const color = getColor(n);
   let goalAlt;
   if (Array.isArray(goals)) {
@@ -26,15 +30,20 @@ export function placeIcons(n: number, goals: Goals | Goals[]) {
     goalAlt = goals.title;
   }
 
+  const imgShadow =
+    "hover:scale-125 hover:shadow-lg dark:hover:shadow-white hover:shadow-black";
+
   return (
     <>
       <Image
         style={{ backgroundColor: color }}
+        className={home ? imgShadow : "undefined"}
         src={`/assets/sdg${n}-white.svg`}
         width={squareProportion}
         height={squareProportion}
         alt={`${goalAlt}`}
         title={`${goalAlt}`}
+        data-cy-goal-img={n}
         priority
       />
     </>
@@ -46,7 +55,7 @@ export default function App({
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <>
-      <div className="mb-8 flex flex-col items-center justify-between gap-8">
+      <div className="flex flex-col items-center justify-between ">
         <h1 className="text-4xl">Pathways to Progress: Exploring the SDGs</h1>
         <p className="max-w-[77ch]">
           Welcome to our landing page dedicated to the United Nations
@@ -60,17 +69,15 @@ export default function App({
           to achieve a sustainable future for all.
         </p>
       </div>
+
       <div className="my-8 grid grid-cols-6 justify-items-center gap-y-6">
         {goals.map((goal) => (
-          <Link
-            href={`${goal.code}`}
-            key={goal.code}
-            className="hover:scale-125"
-          >
-            {placeIcons(+goal.code, goals)}
+          <Link href={`${goal.code}`} key={goal.code} data-cy-goal>
+            {placeIcons(+goal.code, goals, true)}
           </Link>
         ))}
       </div>
+
       <Footer />
     </>
   );

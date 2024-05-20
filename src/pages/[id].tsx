@@ -13,7 +13,7 @@ export default function goalDetails(
 ) {
   const goalTitle = getLabel(+props.goal?.code);
   return (
-    <div className="mx-auto flex w-3/4 flex-col  justify-items-center gap-20">
+    <div className="mx-auto flex w-3/4 flex-col justify-items-center gap-20">
       <section className="flex items-start gap-8">
         {placeIcons(+props.goal.code, props.goal)}
         <div className="flex flex-col gap-2">
@@ -34,7 +34,7 @@ export default function goalDetails(
                 name: goal.Name,
                 rating: goal[`Goal_${props.goal.code}_Rating`] as string,
                 trend: goal[`Goal_${props.goal.code}_Trend`] as string,
-                score: +(+goal[`Goal_${props.goal.code}_Score`]).toFixed(2),
+                score: (+goal[`Goal_${props.goal.code}_Score`]).toFixed(2),
               };
               return <SdgCard key={goal.Name} observation={observation} />;
             })}

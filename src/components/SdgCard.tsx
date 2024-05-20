@@ -1,11 +1,13 @@
-import Image from "next/image";
 import { Arrow } from "./Icons/Arrow";
 
 export const SdgCard = ({ observation }: { observation: ObservationProps }) => {
   return (
-    <div className="grid grid-rows-2 rounded-lg border-2 border-solid border-black px-8 py-4 text-lg dark:border-white">
+    <div
+      data-cy-country-card
+      className="grid grid-rows-2 rounded-lg border-2 border-solid border-black px-8 py-4 text-lg dark:border-white"
+    >
       <div className="flex justify-between text-xl">
-        <p>Country: {observation.name}</p>
+        <h3>{observation.name}</h3>
         <p>Score: {observation.score}</p>
       </div>
 
@@ -32,5 +34,5 @@ type ObservationProps = {
   name: string;
   rating: string;
   trend: string;
-  score: number;
+  score: string;
 };
