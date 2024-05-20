@@ -1,4 +1,4 @@
-name: Tests
+name: Cypress
 on: push
 jobs:
     build:
@@ -16,7 +16,7 @@ jobs:
             - name: Install dependencies
               run: pnpm install
             - name: Run tests
-              run: pnpm test
+              run: pnpm test:build
 
               env:
                 CI: true
