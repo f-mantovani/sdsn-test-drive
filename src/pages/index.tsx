@@ -94,3 +94,4 @@ export const getStaticProps = (async () => {
 }) satisfies GetStaticProps<{
   goals: Goals[];
 }>;
+
